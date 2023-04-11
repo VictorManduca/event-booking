@@ -14,9 +14,12 @@ public class Participants implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+	public Integer id;
 	public String name;
 	public String document;
+
+	public Participants() {
+	}
 
 	public Participants(int id, String name, String document) {
 		super();
@@ -25,11 +28,11 @@ public class Participants implements Serializable {
 		this.document = document;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
