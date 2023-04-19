@@ -14,48 +14,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.victormanduca.eventbooking.domain.entities.Participants;
-import com.victormanduca.eventbooking.domain.implementations.ParticipantsImplementention;
-import com.victormanduca.eventbooking.domain.usecases.IParticipants;
+import com.victormanduca.eventbooking.domain.entities.Address;
+import com.victormanduca.eventbooking.domain.implementations.AddressImplementation;
+import com.victormanduca.eventbooking.domain.usecases.IAddress;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/participants")
-public class ParticipantsController implements IParticipants {
-	private ParticipantsImplementention implementation;
+@RequestMapping(value = "/address")
+public class AddressController implements IAddress {
+	private final AddressImplementation implementation;
 
-	public ParticipantsController(ParticipantsImplementention implementation) {
+	public AddressController(AddressImplementation implementation) {
 		this.implementation = implementation;
 	}
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@Valid @RequestBody Participants participant) {
-		implementation.create(participant);
+	@ResponseStatus(HttpStatus.OK)
+	public void create(@Valid @RequestBody Address address) {
+		this.implementation.create(address);
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Participants> getMany() {
-		return implementation.getMany();
+	public List<Address> getMany() {
+		return this.implementation.getMany();
 	}
 
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Optional<Participants> getById(@PathVariable Integer id) {
-		return implementation.getById(id);
+	public Optional<Address> getById(@PathVariable Integer id) {
+		return this.implementation.getById(id);
 	}
 
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void updateById(@PathVariable Integer id, @Valid @RequestBody Participants participant) {
-		implementation.updateById(id, participant);
+	public void updateById(@PathVariable Integer id, @Valid @RequestBody Address address) {
+		this.implementation.updateById(id, address);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteById(@PathVariable Integer id) {
-		implementation.deleteById(id);
+		this.implementation.deleteById(id);
 	}
 }

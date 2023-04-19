@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Participants implements Serializable {
@@ -15,7 +16,11 @@ public class Participants implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer id;
+
+	@NotBlank(message = "Name is mandatory")
 	public String name;
+
+	@NotBlank(message = "Document is mandatory")
 	public String document;
 
 	public Participants() {

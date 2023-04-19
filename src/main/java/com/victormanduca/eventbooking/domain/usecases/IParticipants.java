@@ -6,9 +6,13 @@ import java.util.Optional;
 import com.victormanduca.eventbooking.domain.entities.Participants;
 
 public interface IParticipants {
-	void CreateParticipant(Participants participant);
-	List<Participants> GetParticipants();
-	Optional<Participants> GetParticipant(Integer id);
-	void UpdateParticipant(Participants participant, Integer id);
-	void DeleteParticipant(Integer id);
+	void create(Participants participant);
+
+	List<Participants> getMany();
+
+	Optional<Participants> getById(Integer id);
+
+	void updateById(Integer id, Participants participant);
+
+	void deleteById(Integer id);
 }
