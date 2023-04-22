@@ -62,22 +62,5 @@ public class EventImplementation implements IEvent {
 		event.getParticipants().add(participant);
 
 		participantRepository.save(participant);
-
-//		final Optional<Participants> optionalParticipant = this.participantRepository.findById(participantId);
-//		final Optional<Event> optionalEvent = this.eventRepository.findById(eventId);
-//
-//		if (!optionalParticipant.isPresent()) {
-//			throw new Exception("ParticipantID must be valid");
-//		} else if (!optionalEvent.isPresent()) {
-//			throw new Exception("EventID must be valid");
-//		}
-//
-//		Participants participant = optionalParticipant.get();
-//		Event event = optionalEvent.get();
-//		Set<Participants> participantsSet = new HashSet<>();
-//		participantsSet.add(participant);
-//
-//		event.setParticipants(participantsSet);
-//		this.eventRepository.save(event);
 	}
 }
