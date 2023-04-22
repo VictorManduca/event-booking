@@ -16,4 +16,6 @@ public interface IEvent {
 	void updateById(int id, Event event);
 
 	void deleteById(int id);
+
+	void registerParticipantInEvent(int participantId, int eventId) throws Exception;
 }

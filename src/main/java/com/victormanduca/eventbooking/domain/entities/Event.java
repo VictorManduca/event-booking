@@ -1,6 +1,9 @@
 package com.victormanduca.eventbooking.domain.entities;
 
 import java.io.Serializable;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -8,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 
@@ -28,15 +32,20 @@ public class Event implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
+	@JsonIgnoreProperties("participantEvents")
+	@ManyToMany(mappedBy = "participantEvents")
+	private Set<Participants> participants;
+
 	public Event() {
 	}
 
-	public Event(int id, Address address, String name, int maxParticipants) {
+	Event(int id, String name, int maxParticipants, Address address, Set<Participants> participants) {
 		super();
 		this.id = id;
-		this.address = address;
 		this.name = name;
 		this.maxParticipants = maxParticipants;
+		this.address = address;
+		this.participants = participants;
 	}
 
 	public Address getAddress() {
@@ -69,6 +78,14 @@ public class Event implements Serializable {
 
 	public void setMaxParticipants(int maxParticipants) {
 		this.maxParticipants = maxParticipants;
+	}
+
+	public Set<Participants> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(Set<Participants> participants) {
+		this.participants = participants;
 	}
 
 	@Override

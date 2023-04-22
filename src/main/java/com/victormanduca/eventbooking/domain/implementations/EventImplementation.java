@@ -5,23 +5,28 @@ import java.util.Optional;
 
 import com.victormanduca.eventbooking.domain.entities.Address;
 import com.victormanduca.eventbooking.domain.entities.Event;
+import com.victormanduca.eventbooking.domain.entities.Participants;
 import com.victormanduca.eventbooking.domain.entities.dtos.EventDTO;
 import com.victormanduca.eventbooking.domain.usecases.IEvent;
 import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
 import com.victormanduca.eventbooking.infra.repositories.IEventRepository;
+import com.victormanduca.eventbooking.infra.repositories.IParticipantsRepository;
 
 public class EventImplementation implements IEvent {
 	private final IEventRepository eventRepository;
 	private final IAddressRepository addressRepository;
+	private final IParticipantsRepository participantRepository;
 
-	public EventImplementation(IEventRepository eventRepository, IAddressRepository addressRepository) {
+	public EventImplementation(IEventRepository eventRepository, IAddressRepository addressRepository,
+			IParticipantsRepository participantRepository) {
 		this.eventRepository = eventRepository;
 		this.addressRepository = addressRepository;
+		this.participantRepository = participantRepository;
 	}
 
 	public void create(EventDTO eventDto) throws Exception {
 		final Optional<Address> address = this.addressRepository.findById(eventDto.getAddressId());
-		if (address == null) {
+		if (!address.isPresent()) {
 			throw new Exception("AddressId must be valid");
 		}
 
@@ -47,5 +52,32 @@ public class EventImplementation implements IEvent {
 
 	public void deleteById(int id) {
 		this.eventRepository.deleteById(id);
+	}
+
+	public void registerParticipantInEvent(int participantId, int eventId) throws Exception {
+		Participants participant = participantRepository.findById(participantId).get();
+		Event event = eventRepository.findById(eventId).get();
+
+		participant.getParticipantEvents().add(event);
+		event.getParticipants().add(participant);
+
+		participantRepository.save(participant);
+
+//		final Optional<Participants> optionalParticipant = this.participantRepository.findById(participantId);
+//		final Optional<Event> optionalEvent = this.eventRepository.findById(eventId);
+//
+//		if (!optionalParticipant.isPresent()) {
+//			throw new Exception("ParticipantID must be valid");
+//		} else if (!optionalEvent.isPresent()) {
+//			throw new Exception("EventID must be valid");
+//		}
+//
+//		Participants participant = optionalParticipant.get();
+//		Event event = optionalEvent.get();
+//		Set<Participants> participantsSet = new HashSet<>();
+//		participantsSet.add(participant);
+//
+//		event.setParticipants(participantsSet);
+//		this.eventRepository.save(event);
 	}
 }

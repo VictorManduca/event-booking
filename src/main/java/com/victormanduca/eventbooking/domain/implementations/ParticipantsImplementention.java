@@ -23,8 +23,7 @@ public class ParticipantsImplementention implements IParticipants {
 	}
 
 	public Optional<Participants> getById(int id) {
-		final Long idL = Long.valueOf(id);
-		return participantsRepository.findById(idL);
+		return participantsRepository.findById(id);
 	}
 
 	public void updateById(int id, Participants participant) {
@@ -33,7 +32,6 @@ public class ParticipantsImplementention implements IParticipants {
 	}
 
 	public void deleteById(int id) {
-		final Long idL = Long.valueOf(id);
-		participantsRepository.deleteById(idL);
+		participantsRepository.deleteById(id);
 	}
 }

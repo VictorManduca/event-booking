@@ -59,4 +59,10 @@ public class EventController implements IEvent {
 	public void deleteById(@PathVariable int id) {
 		this.implementation.deleteById(id);
 	}
+
+	@PostMapping(value = "/{id}/participant/{participantId}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void registerParticipantInEvent(@PathVariable int id, @PathVariable int participantId) throws Exception {
+		this.implementation.registerParticipantInEvent(id, participantId);
+	}
 }
