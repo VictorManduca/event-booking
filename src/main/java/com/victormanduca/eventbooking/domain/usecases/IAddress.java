@@ -7,7 +7,10 @@ import com.victormanduca.eventbooking.domain.entities.Address;
 
 public interface IAddress {
 	void create(Address address);
+
 	List<Address> getMany();
-	Optional<Address> getById(Integer id);
-	void updateById(Integer id, Address address);
+
+	Optional<Address> getById(int id);
+
+	void updateById(int id, Address address);
 }

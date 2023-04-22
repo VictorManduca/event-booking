@@ -3,6 +3,7 @@ package com.victormanduca.eventbooking.domain.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,18 +16,19 @@ public class Address implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id;
+	private int id;
 
 	@NotBlank(message = "ZipCode is mandatory")
-	public String zipCode;
-	public Integer number;
-	public String city;
-	public String state;
+	@Column(name="zip_code")
+	private String zipCode;
+	private Integer number;
+	private String city;
+	private String state;
 
 	public Address() {
 	}
 
-	public Address(Integer id, String zipCode, Integer number, String city, String state) {
+	public Address(int id, String zipCode, Integer number, String city, String state) {
 		super();
 		this.id = id;
 		this.zipCode = zipCode;
@@ -35,11 +37,11 @@ public class Address implements Serializable {
 		this.state = state;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

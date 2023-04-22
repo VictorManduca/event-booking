@@ -43,19 +43,19 @@ public class AddressController implements IAddress {
 
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Optional<Address> getById(@PathVariable Integer id) {
+	public Optional<Address> getById(@PathVariable int id) {
 		return this.implementation.getById(id);
 	}
 
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void updateById(@PathVariable Integer id, @Valid @RequestBody Address address) {
+	public void updateById(@PathVariable int id, @Valid @RequestBody Address address) {
 		this.implementation.updateById(id, address);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteById(@PathVariable Integer id) {
+	public void deleteById(@PathVariable int id) {
 		this.implementation.deleteById(id);
 	}
 }

@@ -15,7 +15,6 @@ public class ParticipantsImplementention implements IParticipants {
 	}
 
 	public void create(Participants participant) {
-		participant.setId(null);
 		participantsRepository.save(participant);
 	}
 
@@ -23,17 +22,17 @@ public class ParticipantsImplementention implements IParticipants {
 		return participantsRepository.findAll();
 	}
 
-	public Optional<Participants> getById(Integer id) {
+	public Optional<Participants> getById(int id) {
 		final Long idL = Long.valueOf(id);
 		return participantsRepository.findById(idL);
 	}
 
-	public void updateById(Integer id, Participants participant) {
+	public void updateById(int id, Participants participant) {
 		participant.setId(id);
 		participantsRepository.save(participant);
 	}
 
-	public void deleteById(Integer id) {
+	public void deleteById(int id) {
 		final Long idL = Long.valueOf(id);
 		participantsRepository.deleteById(idL);
 	}

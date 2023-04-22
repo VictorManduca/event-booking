@@ -15,24 +15,23 @@ public class AddressImplementation implements IAddress {
 	}
 
 	public void create(Address address) {
-		address.setId(null);
 		repository.save(address);
 	}
-	
+
 	public List<Address> getMany() {
 		return repository.findAll();
 	}
-	
-	public Optional<Address> getById(Integer id) {
+
+	public Optional<Address> getById(int id) {
 		return repository.findById(id);
 	}
-	
-	public void updateById(Integer id, Address address) {
+
+	public void updateById(int id, Address address) {
 		address.setId(id);
 		repository.save(address);
 	}
-	
-	public void deleteById(Integer id) {
+
+	public void deleteById(int id) {
 		repository.deleteById(id);
 	}
 }

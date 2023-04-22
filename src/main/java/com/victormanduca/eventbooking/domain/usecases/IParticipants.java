@@ -10,9 +10,9 @@ public interface IParticipants {
 
 	List<Participants> getMany();
 
-	Optional<Participants> getById(Integer id);
+	Optional<Participants> getById(int id);
 
-	void updateById(Integer id, Participants participant);
+	void updateById(int id, Participants participant);
 
-	void deleteById(Integer id);
+	void deleteById(int id);
 }

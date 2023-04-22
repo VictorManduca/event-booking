@@ -15,13 +15,13 @@ public class Participants implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id;
+	private int id;
 
 	@NotBlank(message = "Name is mandatory")
-	public String name;
+	private String name;
 
 	@NotBlank(message = "Document is mandatory")
-	public String document;
+	private String document;
 
 	public Participants() {
 	}
@@ -33,11 +33,11 @@ public class Participants implements Serializable {
 		this.document = document;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

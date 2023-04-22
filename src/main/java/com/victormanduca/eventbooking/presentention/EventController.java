@@ -14,48 +14,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.victormanduca.eventbooking.domain.entities.Participants;
-import com.victormanduca.eventbooking.domain.implementations.ParticipantsImplementention;
-import com.victormanduca.eventbooking.domain.usecases.IParticipants;
+import com.victormanduca.eventbooking.domain.entities.Event;
+import com.victormanduca.eventbooking.domain.entities.dtos.EventDTO;
+import com.victormanduca.eventbooking.domain.implementations.EventImplementation;
+import com.victormanduca.eventbooking.domain.usecases.IEvent;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/participants")
-public class ParticipantsController implements IParticipants {
-	private ParticipantsImplementention implementation;
+@RequestMapping(value = "/event")
+public class EventController implements IEvent {
+	private final EventImplementation implementation;
 
-	public ParticipantsController(ParticipantsImplementention implementation) {
+	public EventController(EventImplementation implementation) {
 		this.implementation = implementation;
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@Valid @RequestBody Participants participant) {
-		implementation.create(participant);
+	public void create(@Valid @RequestBody EventDTO event) throws Exception {
+		this.implementation.create(event);
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Participants> getMany() {
-		return implementation.getMany();
+	public List<Event> getMany() {
+		return this.implementation.getMany();
 	}
 
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Optional<Participants> getById(@PathVariable int id) {
-		return implementation.getById(id);
+	public Optional<Event> getById(@PathVariable int id) {
+		return this.implementation.getById(id);
 	}
 
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void updateById(@PathVariable int id, @Valid @RequestBody Participants participant) {
-		implementation.updateById(id, participant);
+	public void updateById(@PathVariable int id, @Valid @RequestBody Event event) {
+		this.implementation.updateById(id, event);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteById(@PathVariable int id) {
-		implementation.deleteById(id);
+		this.implementation.deleteById(id);
 	}
 }

@@ -1,0 +1,51 @@
+package com.victormanduca.eventbooking.domain.implementations;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.victormanduca.eventbooking.domain.entities.Address;
+import com.victormanduca.eventbooking.domain.entities.Event;
+import com.victormanduca.eventbooking.domain.entities.dtos.EventDTO;
+import com.victormanduca.eventbooking.domain.usecases.IEvent;
+import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
+import com.victormanduca.eventbooking.infra.repositories.IEventRepository;
+
+public class EventImplementation implements IEvent {
+	private final IEventRepository eventRepository;
+	private final IAddressRepository addressRepository;
+
+	public EventImplementation(IEventRepository eventRepository, IAddressRepository addressRepository) {
+		this.eventRepository = eventRepository;
+		this.addressRepository = addressRepository;
+	}
+
+	public void create(EventDTO eventDto) throws Exception {
+		final Optional<Address> address = this.addressRepository.findById(eventDto.getAddressId());
+		if (address == null) {
+			throw new Exception("AddressId must be valid");
+		}
+
+		final Event event = new Event();
+		event.setMaxParticipants(eventDto.getMaxParticipants());
+		event.setName(eventDto.getName());
+		event.setAddress(address.get());
+		this.eventRepository.save(event);
+	}
+
+	public List<Event> getMany() {
+		return this.eventRepository.findAll();
+	}
+
+	public Optional<Event> getById(int id) {
+		return this.eventRepository.findById(id);
+	}
+
+	public void updateById(int id, Event event) {
+		event.setId(id);
+		this.eventRepository.save(event);
+	}
+
+	public void deleteById(int id) {
+		this.eventRepository.deleteById(id);
+	}
+}
