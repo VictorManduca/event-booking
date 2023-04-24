@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public class Event implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
+	@Hidden
 	@JsonIgnoreProperties("participantEvents")
 	@ManyToMany(mappedBy = "participantEvents")
 	private Set<Participants> participants;

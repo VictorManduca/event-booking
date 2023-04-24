@@ -14,4 +14,4 @@ Event booking backend service
 - [x] Use clean architecture  
 - [x] Apply unit test  
 - [x] Use docker  
-- [ ] Use Swagger  
+- [x] Use Swagger  

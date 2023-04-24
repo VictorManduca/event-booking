@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Participants implements Serializable {
 
 	private String document;
 
+	@Hidden
 	@JsonIgnoreProperties("participants")
 	@ManyToMany
 	@JoinTable(name = "participant_events", joinColumns = @JoinColumn(name = "participants_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))

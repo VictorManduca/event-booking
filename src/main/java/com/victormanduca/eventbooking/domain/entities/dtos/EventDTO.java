@@ -1,10 +1,16 @@
 package com.victormanduca.eventbooking.domain.entities.dtos;
 
-public class EventDTO {
+import java.io.Serializable;
+
+public class EventDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String name;
 	private int maxParticipants;
 	private int addressId;
+
+	public EventDTO() {
+	}
 
 	public EventDTO(String name, int maxParticipants, int addressId) {
 		super();
