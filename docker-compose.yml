@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     image: postgres
@@ -9,3 +11,16 @@ services:
       - POSTGRES_DB=events
     ports:
       - 5432:5432
+
+  app:
+    build: .
+    container_name: app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/events
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=pass
+    ports:
+      - 8080:8080
