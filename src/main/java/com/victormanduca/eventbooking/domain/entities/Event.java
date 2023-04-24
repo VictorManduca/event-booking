@@ -1,6 +1,7 @@
 package com.victormanduca.eventbooking.domain.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,7 +40,15 @@ public class Event implements Serializable {
 	public Event() {
 	}
 
-	Event(int id, String name, int maxParticipants, Address address, Set<Participants> participants) {
+	public Event(int id, String name, int maxParticipants, Address address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.maxParticipants = maxParticipants;
+		this.address = address;
+	}
+
+	public Event(int id, String name, int maxParticipants, Address address, Set<Participants> participants) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,6 +95,24 @@ public class Event implements Serializable {
 
 	public void setParticipants(Set<Participants> participants) {
 		this.participants = participants;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, name, participants);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Event other = (Event) obj;
+		return Objects.equals(address, other.address) && Objects.equals(name, other.name)
+				&& Objects.equals(participants, other.participants);
 	}
 
 	@Override

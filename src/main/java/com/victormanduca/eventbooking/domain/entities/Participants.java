@@ -36,7 +36,14 @@ public class Participants implements Serializable {
 	public Participants() {
 	}
 
-	Participants(int id, String name, String document, Set<Event> participantOfEvents) {
+	public Participants(int id, String name, String document) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.document = document;
+	}
+
+	public Participants(int id, String name, String document, Set<Event> participantOfEvents) {
 		super();
 		this.id = id;
 		this.name = name;

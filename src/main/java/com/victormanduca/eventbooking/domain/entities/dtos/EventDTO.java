@@ -6,6 +6,13 @@ public class EventDTO {
 	private int maxParticipants;
 	private int addressId;
 
+	public EventDTO(String name, int maxParticipants, int addressId) {
+		super();
+		this.name = name;
+		this.maxParticipants = maxParticipants;
+		this.addressId = addressId;
+	}
+
 	public String getName() {
 		return name;
 	}
