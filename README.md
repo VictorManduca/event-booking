@@ -11,7 +11,7 @@ Event booking backend service
 * JUnit
 
 ## Project Goals
-[x] Use clean architecture
-[x] Apply unit test
-[] Use docker
-[] Use Swagger
+- [x] Use clean architecture  
+- [x] Apply unit test  
+- [ ] Use docker  
+- [ ] Use Swagger  
