@@ -9,9 +9,17 @@ Event booking backend service
 * Postgres
 * SOLID Principals | Clean Architecture
 * JUnit
+* SpringDocs
 
 ## Project Goals
 - [x] Use clean architecture  
 - [x] Apply unit test  
 - [x] Use docker  
 - [x] Use Swagger  
+
+## Docs
+### Swagger UI
+![swagger-ui](/docs/swagger-ui.png)
+
+### Swagger Json
+![swagger-json](/docs/swagger-json.png)
