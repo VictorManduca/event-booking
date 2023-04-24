@@ -9,3 +9,9 @@ Event booking backend service
 * Postgres
 * SOLID Principals | Clean Architecture
 * JUnit
+
+## Project Goals
+[x] Use clean architecture
+[x] Apply unit test
+[] Use docker
+[] Use Swagger
