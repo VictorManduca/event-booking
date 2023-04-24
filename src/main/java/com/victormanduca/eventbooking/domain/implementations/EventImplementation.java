@@ -3,6 +3,8 @@ package com.victormanduca.eventbooking.domain.implementations;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.victormanduca.eventbooking.domain.entities.Address;
 import com.victormanduca.eventbooking.domain.entities.Event;
 import com.victormanduca.eventbooking.domain.entities.Participants;
@@ -12,6 +14,7 @@ import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
 import com.victormanduca.eventbooking.infra.repositories.IEventRepository;
 import com.victormanduca.eventbooking.infra.repositories.IParticipantsRepository;
 
+@Component
 public class EventImplementation implements IEvent {
 	private final IEventRepository eventRepository;
 	private final IAddressRepository addressRepository;

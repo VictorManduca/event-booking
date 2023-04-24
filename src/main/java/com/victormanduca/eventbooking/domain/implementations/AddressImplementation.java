@@ -3,10 +3,13 @@ package com.victormanduca.eventbooking.domain.implementations;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.victormanduca.eventbooking.domain.entities.Address;
 import com.victormanduca.eventbooking.domain.usecases.IAddress;
 import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
 
+@Component
 public class AddressImplementation implements IAddress {
 	private final IAddressRepository repository;
 

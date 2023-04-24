@@ -3,10 +3,13 @@ package com.victormanduca.eventbooking.domain.implementations;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.victormanduca.eventbooking.domain.entities.Participants;
 import com.victormanduca.eventbooking.domain.usecases.IParticipants;
 import com.victormanduca.eventbooking.infra.repositories.IParticipantsRepository;
 
+@Component
 public class ParticipantsImplementention implements IParticipants {
 	private IParticipantsRepository participantsRepository;
 
