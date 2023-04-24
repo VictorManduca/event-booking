@@ -13,5 +13,5 @@ Event booking backend service
 ## Project Goals
 - [x] Use clean architecture  
 - [x] Apply unit test  
-- [ ] Use docker  
+- [x] Use docker  
 - [ ] Use Swagger  
