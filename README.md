@@ -3,8 +3,15 @@ Event booking backend service
 
 ## Tech stack
 * Java 17 LTS (Jakarta)
-* Spring 3.0.5
+* Spring
 * Gradle
 * Docker
 * Postgres
 * SOLID Principals | Clean Architecture
+* JUnit
+
+## Project Goals
+- [x] Use clean architecture  
+- [x] Apply unit test  
+- [ ] Use docker  
+- [ ] Use Swagger  
