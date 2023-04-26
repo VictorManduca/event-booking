@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.victormanduca.eventbooking.domain.entities.Address;
 import com.victormanduca.eventbooking.domain.entities.Event;
+import com.victormanduca.eventbooking.domain.entities.Participants;
 import com.victormanduca.eventbooking.domain.entities.dtos.EventDTO;
 import com.victormanduca.eventbooking.domain.implementations.EventImplementation;
 import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
@@ -50,6 +52,24 @@ public class EventImplementationTest {
 		Mockito.when(eventRepository.save(savedResponse)).thenReturn(savedResponse);
 		eventImplementation.create(eventRequestBody);
 		Mockito.verify(eventRepository, Mockito.times(1)).save(savedResponse);
+	}
+
+	@Test
+	public void testRegisterParticipantInEvent() throws Exception {
+		final int requestedId = 1;
+		final Address address = new Address(requestedId, "1234-56", 12, "cityName", "stateName");
+		final Participants participant = new Participants(requestedId, "Victor", "123-489", new HashSet<Event>());
+		final Event event = new Event(0, "Java Meetup", 300, address, new HashSet<Participants>());
+
+		Mockito.when(participantRepository.findById(requestedId)).thenReturn(Optional.ofNullable(participant));
+		Mockito.when(eventRepository.findById(requestedId)).thenReturn(Optional.ofNullable(event));
+		Mockito.when(participantRepository.save(participant)).thenReturn(participant);
+
+		eventImplementation.registerParticipantInEvent(requestedId, requestedId);
+
+		Mockito.verify(participantRepository, Mockito.times(1)).findById(requestedId);
+		Mockito.verify(eventRepository, Mockito.times(1)).findById(requestedId);
+		Mockito.verify(participantRepository, Mockito.times(1)).save(participant);
 	}
 
 	@Test
