@@ -1,5 +1,5 @@
 <h1 align="center">Event Booking</h1>
-<p align='center>"Event booking backend service</p>
+<p align="center">Event booking backend service</p>
 
 ## Tech stack
 * Java 17 LTS (Jakarta)
