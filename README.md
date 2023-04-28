@@ -1,5 +1,5 @@
 <h1 align="center">Event Booking</h1>
-Event booking backend service
+<p align='center>"Event booking backend service</p>
 
 ## Tech stack
 * Java 17 LTS (Jakarta)
@@ -15,7 +15,13 @@ Event booking backend service
 - [x] Use clean architecture  
 - [x] Apply unit test  
 - [x] Use docker  
-- [x] Use Swagger  
+- [x] Use Swagger
+
+## How to run?
+```shell
+docker-compose up -d
+```
+Then it will run in localhost:8080
 
 ## Docs
 ### Swagger UI
