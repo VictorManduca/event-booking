@@ -28,14 +28,14 @@ public class EventImplementation implements IEvent {
 	}
 
 	public void create(EventDTO eventDto) throws Exception {
-		final Optional<Address> address = this.addressRepository.findById(eventDto.getAddressId());
+		final Optional<Address> address = this.addressRepository.findById(eventDto.addressId());
 		if (!address.isPresent()) {
 			throw new Exception("AddressId must be valid");
 		}
 
 		final Event event = new Event();
-		event.setMaxParticipants(eventDto.getMaxParticipants());
-		event.setName(eventDto.getName());
+		event.setMaxParticipants(eventDto.maxParticipants());
+		event.setName(eventDto.name());
 		event.setAddress(address.get());
 		this.eventRepository.save(event);
 	}
