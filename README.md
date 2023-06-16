@@ -2,7 +2,7 @@
 <p align="center">Event booking backend service</p>
 
 ## Tech stack
-* Java 17 LTS (Jakarta)
+* Java 17 LTS
 * Spring
 * Gradle
 * Docker
