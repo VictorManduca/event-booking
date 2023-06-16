@@ -13,12 +13,11 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<List<String>> handleValidationExceptions(MethodArgumentNotValidException exception) {
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 
-		exception.getBindingResult().getFieldErrors().forEach(error -> {
-			String errorMessage = error.getDefaultMessage();
-			errors.add(errorMessage);
-		});
+		exception.getBindingResult()
+			.getFieldErrors()
+			.forEach(error -> errors.add(error.getDefaultMessage()));
 
 		return ResponseEntity.badRequest().body(errors);
 	}

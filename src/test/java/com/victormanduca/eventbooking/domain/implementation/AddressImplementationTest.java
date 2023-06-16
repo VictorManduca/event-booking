@@ -20,7 +20,6 @@ import com.victormanduca.eventbooking.infra.repositories.IAddressRepository;
 @SpringBootTest
 @ActiveProfiles("test")
 public class AddressImplementationTest {
-
 	@Mock
 	private IAddressRepository addressRepository;
 
@@ -29,16 +28,17 @@ public class AddressImplementationTest {
 
 	@Test
 	public void testCreate() {
-		final Address address = new Address();
+		final Address address = this.address();
 		Mockito.when(addressRepository.save(address)).thenReturn(address);
 		addressImplementation.create(address);
+
 		Mockito.verify(addressRepository, Mockito.times(1)).save(address);
 	}
 
 	@Test
 	public void testGetMany() {
-		final Address address = new Address();
-		List<Address> listAddress = new ArrayList<Address>();
+		final Address address = this.address();
+		List<Address> listAddress = new ArrayList<>();
 		listAddress.add(address);
 
 		Mockito.when(addressRepository.findAll()).thenReturn(listAddress);
@@ -50,31 +50,35 @@ public class AddressImplementationTest {
 
 	@Test
 	public void testGetById() {
-		final int requestedId = 1;
-		final Optional<Address> address = Optional
-				.ofNullable(new Address(requestedId, "1234-56", 12, "cityName", "stateName"));
-		Mockito.when(addressRepository.findById(requestedId)).thenReturn(address);
+		final Optional<Address> address = Optional.ofNullable(this.address());
+		Mockito.when(addressRepository.findById(this.requestId())).thenReturn(address);
 
-		Optional<Address> addressImplementationResponse = addressImplementation.getById(requestedId);
-		Mockito.verify(addressRepository, Mockito.times(1)).findById(requestedId);
+		Optional<Address> addressImplementationResponse = addressImplementation.getById(this.requestId());
+		Mockito.verify(addressRepository, Mockito.times(1)).findById(this.requestId());
 
 		assertTrue(addressImplementationResponse.equals(address));
 	}
 
 	@Test
 	public void testUpdateById() {
-		final int requestedId = 1;
-		final Address address = new Address(requestedId, "1234-56", 12, "cityName", "stateName");
+		final Address address = this.address();
 		Mockito.when(addressRepository.save(address)).thenReturn(address);
 
-		addressImplementation.updateById(requestedId, address);
+		addressImplementation.updateById(this.requestId(), address);
 		Mockito.verify(addressRepository, Mockito.times(1)).save(address);
 	}
 
 	@Test
 	public void testDeleteById() {
-		final int requestedId = 1;
-		addressImplementation.deleteById(requestedId);
-		Mockito.verify(addressRepository, Mockito.times(1)).deleteById(requestedId);
+		addressImplementation.deleteById(this.requestId());
+		Mockito.verify(addressRepository, Mockito.times(1)).deleteById(this.requestId());
+	}
+
+	private Address address() {
+		return new Address(this.requestId(), "1234-56", 12, "cityName", "stateName");
+	}
+	
+	private int requestId() {
+		return 1;
 	}
 }

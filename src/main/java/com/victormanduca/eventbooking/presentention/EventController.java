@@ -22,7 +22,7 @@ import com.victormanduca.eventbooking.domain.usecases.IEvent;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/event")
+@RequestMapping("/event")
 public class EventController implements IEvent {
 	private final EventImplementation implementation;
 
@@ -42,25 +42,25 @@ public class EventController implements IEvent {
 		return this.implementation.getMany();
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<Event> getById(@PathVariable int id) {
 		return this.implementation.getById(id);
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void updateById(@PathVariable int id, @Valid @RequestBody Event event) {
 		this.implementation.updateById(id, event);
 	}
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteById(@PathVariable int id) {
 		this.implementation.deleteById(id);
 	}
 
-	@PostMapping(value = "/{id}/participant/{participantId}")
+	@PostMapping("/{id}/participant/{participantId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void registerParticipantInEvent(@PathVariable int id, @PathVariable int participantId) throws Exception {
 		this.implementation.registerParticipantInEvent(id, participantId);

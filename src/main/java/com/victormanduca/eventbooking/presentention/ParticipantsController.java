@@ -21,7 +21,7 @@ import com.victormanduca.eventbooking.domain.usecases.IParticipants;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/participants")
+@RequestMapping("/participants")
 public class ParticipantsController implements IParticipants {
 	private ParticipantsImplementention implementation;
 
@@ -41,19 +41,19 @@ public class ParticipantsController implements IParticipants {
 		return implementation.getMany();
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<Participants> getById(@PathVariable int id) {
 		return implementation.getById(id);
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void updateById(@PathVariable int id, @Valid @RequestBody Participants participant) {
 		implementation.updateById(id, participant);
 	}
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteById(@PathVariable int id) {
 		implementation.deleteById(id);

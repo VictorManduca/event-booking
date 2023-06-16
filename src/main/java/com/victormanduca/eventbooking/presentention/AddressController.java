@@ -21,7 +21,7 @@ import com.victormanduca.eventbooking.domain.usecases.IAddress;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/address")
+@RequestMapping("/address")
 public class AddressController implements IAddress {
 	private final AddressImplementation implementation;
 
@@ -41,19 +41,19 @@ public class AddressController implements IAddress {
 		return this.implementation.getMany();
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<Address> getById(@PathVariable int id) {
 		return this.implementation.getById(id);
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void updateById(@PathVariable int id, @Valid @RequestBody Address address) {
 		this.implementation.updateById(id, address);
 	}
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteById(@PathVariable int id) {
 		this.implementation.deleteById(id);
